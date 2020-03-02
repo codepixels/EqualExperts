@@ -81,5 +81,16 @@ namespace FizzBuzz.EqualExperts.Tests
             var result = sut.Run(startRange, endRange);
             Assert.That(result.Equals(expectedResult));
         }
+
+        [TestCase(1, 20, "1 2 lucky 4 buzz fizz 7 8 fizz buzz 11 fizz lucky 14 fizzbuzz 16 17 fizz 19 buzz fizz: 4 buzz: 3 fizzbuzz: 1 lucky: 2 integer: 10")]
+        [TestCase(-5, 6, "buzz -4 lucky -2 -1 0 1 2 lucky 4 buzz fizz fizz: 1 buzz: 2 fizzbuzz: 0 lucky: 2 integer: 7")]
+        [TestCase(0, 0, "0 fizz: 0 buzz: 0 fizzbuzz: 0 lucky: 0 integer: 1")]
+        public void Run_GivenARangeOfIntegersAndIncludeReportIsTrue_ShouldReturnAReportAsExpectedResult(int startRange, int endRange, string expectedResult)
+        {
+            var includeReport = true;
+            FizzBuzz sut = new FizzBuzz();
+            var result = sut.Run(startRange, endRange, includeReport);
+            Assert.That(result.Equals(expectedResult));
+        }
     }
 }
